@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Shops extends Model
 {
@@ -22,5 +23,14 @@ class Shops extends Model
     public function coupon()
     {
         return $this->hasMany(Coupons::class);
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        if (!$value) {
+            return null;
+        }
+
+        return url(Storage::url($value));
     }
 }

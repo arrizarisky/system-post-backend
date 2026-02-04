@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('usage_limit');
             $table->integer('used_count')->default(0);
             $table->boolean('is_active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

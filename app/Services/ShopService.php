@@ -20,18 +20,18 @@ class ShopService
 
         if ($shop) {
             // Update existing shop
-            $logoPath = $this->uploadPhoto($data['logo'] ?? null);
+            $logoPath = $this->uploadPhoto($data['photo'] ?? null);
             $updateData = ['is_onboarded' => true];
             if ($logoPath) $updateData['logo'] = $logoPath;
             if (isset($data['name'])) $updateData['name'] = $data['name'];
             return $this->shopRepository->update($shop->id, $updateData);
         } else {
             // Create new shop
-            $logoPath = $this->uploadPhoto($data['logo'] ?? null);
+            $logoPath = $this->uploadPhoto($data['photo'] ?? null);
             $createData = [
-                'user_id' => $userId,
+                'keeper_id' => $userId,
                 'name' => $data['name'],
-                'logo' => $logoPath,
+                'photo' => $logoPath,
                 'is_onboarded' => true,
             ];
             return $this->shopRepository->create($createData);
