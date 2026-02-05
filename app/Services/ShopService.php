@@ -21,7 +21,7 @@ class ShopService
         if ($shop) {
             // Update existing shop
             $logoPath = $this->uploadPhoto($data['photo'] ?? null);
-            $updateData = ['is_onboarded' => true];
+            $updateData = ['is_boarding' => true];
             if ($logoPath) $updateData['logo'] = $logoPath;
             if (isset($data['name'])) $updateData['name'] = $data['name'];
             return $this->shopRepository->update($shop->id, $updateData);
@@ -32,7 +32,7 @@ class ShopService
                 'keeper_id' => $userId,
                 'name' => $data['name'],
                 'photo' => $logoPath,
-                'is_onboarded' => true,
+                'is_boarding' => true,
             ];
             return $this->shopRepository->create($createData);
         }

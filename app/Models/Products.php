@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Products extends Model
 {
@@ -21,5 +22,14 @@ class Products extends Model
     public function variants()
     {
         return $this->hasMany(ProductVariants::class);
+    }
+
+    public function getPhotoAttribute($value)
+    {
+        if (!$value) {
+            return null;
+        }
+
+        return url(Storage::url($value));
     }
 }
